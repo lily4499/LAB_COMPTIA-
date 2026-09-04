@@ -1,0 +1,235 @@
+The **situation** in this lab was that you were acting as the **IT administrator for a small company**.
+
+A workstation in the **executive office** needed to connect to **two different networks**:
+
+* the company’s normal network, which also gives access to the internet
+* a second small private network that was not fully built yet
+
+The computer had **two network cards**:
+
+* **Ethernet**
+* **Ethernet 2**
+
+Because the computer had to communicate correctly on both networks, you needed to manually configure the IPv4 settings for each card.
+
+A simple way to think about it is:
+
+> The executive computer had two doors. One door went to the company network and internet, and the second door went to a small private network. You had to give each door the correct network address.
+
+For **Ethernet**, you configured the company-network connection:
+
+```text
+IP address:       192.168.0.254
+Subnet mask:      255.255.255.0
+Default gateway:  192.168.0.5
+Preferred DNS:    163.128.80.93
+Alternate DNS:    163.128.78.93
+```
+
+This connection needed a **gateway and DNS** because it had to reach other networks and the internet.
+
+For **Ethernet 2**, you configured the small private network:
+
+```text
+IP address:       10.0.255.254
+Subnet mask:      255.255.0.0
+Gateway:          blank
+DNS:              blank
+```
+
+This connection did not need a gateway or DNS because it was only for that local private network.
+
+After configuring both cards, you tested the main Ethernet connection by running:
+
+```powershell
+ping 163.128.80.93
+```
+
+You received replies, which proved the computer could successfully communicate with the preferred DNS server.
+
+So the whole lab was basically:
+
+**Situation:** An executive computer needed access to two networks.
+
+**Problem:** The network cards did not yet have the correct manual IP settings.
+
+**What you did:** You configured the IP address, subnet mask, gateway, and DNS information.
+
+**How you verified it:** You used `ping` to make sure the connection worked.
+
+A good CompTIA-style summary to remember is:
+
+> **Configure → Verify → Test**
+
+You configured the IP settings, verified them, and tested connectivity with `ping`.
+
+
+---
+-----
+
+This lab was about **manually giving a Windows computer its network settings** instead of letting DHCP choose them automatically.
+
+Think of it like giving a house its exact address so other places know where to find it.
+
+The computer had **two network cards**: **Ethernet** and **Ethernet 2**. Each one connected to a different network, so each needed its own IP settings.
+
+For **Ethernet**, you had to enter:
+
+```text
+IP address:       192.168.0.254
+Subnet mask:      255.255.255.0
+Default gateway:  192.168.0.5
+Preferred DNS:    163.128.80.93
+Alternate DNS:    163.128.78.93
+```
+
+For **Ethernet 2**, you entered:
+
+```text
+IP address:       10.0.255.254
+Subnet mask:      255.255.0.0
+Gateway:          blank
+DNS:              blank
+```
+
+Here is what each setting means in simple English:
+
+| Setting             | Simple meaning                                            | Example                                               |
+| ------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
+| **IP address**      | The computer's address on the network                     | Like your house address                               |
+| **Subnet mask**     | Tells the computer which devices are on its local network | Like knowing which houses are in your neighborhood    |
+| **Default gateway** | The router used to reach other networks or the internet   | Like the road that takes you out of your neighborhood |
+| **DNS server**      | Changes website names into IP addresses                   | Turns `google.com` into an IP address                 |
+
+The lab also asked you to use the **last valid IP address** in each subnet. For example, the Ethernet network was:
+
+```text
+192.168.0.0/24
+```
+
+The addresses work like this:
+
+```text
+192.168.0.0    = Network address
+192.168.0.1
+192.168.0.2
+...
+192.168.0.254  = Last usable address ✅
+192.168.0.255  = Broadcast address
+```
+
+So you used:
+
+```text
+192.168.0.254
+```
+
+For the second network:
+
+```text
+10.0.0.0/16
+```
+
+the last usable address was:
+
+```text
+10.0.255.254
+```
+
+After configuring both network cards, you tested the connection with:
+
+```powershell
+ping 163.128.80.93
+```
+
+You received replies, which proved the computer could communicate with the DNS server.
+
+A simple real-world example: imagine a company sets up a manager's computer. One network card connects to the normal company network and internet. 
+The second network card connects to a small private network used for special equipment. 
+The IT technician must assign the correct IP addresses so both connections work.
+
+### What to remember for CompTIA A+
+
+**Static IP = you manually enter the network information.**
+
+Remember these four important settings:
+
+```text
+IP address     = Who am I?
+Subnet mask    = Who is local?
+Gateway        = How do I leave my network?
+DNS            = How do I find websites by name?
+```
+
+And the final test is often:
+
+```cmd
+ipconfig /all
+ping <IP-address>
+```
+
+`ipconfig /all` checks your settings, and `ping` checks whether you can communicate with another device.
+
+
+---
+-------------------
+
+Perfect — this exhibit gives us the missing addresses. Use these exact values.
+
+Setting	Ethernet	Ethernet 2
+IP address	192.168.0.254	10.0.255.254
+Subnet mask	255.255.255.0	255.255.0.0
+Default gateway	192.168.0.5	Leave blank
+Preferred DNS	163.128.80.93	Leave blank
+Alternate DNS	163.128.78.93	Leave blank
+
+The exhibit shows Bldg A Router = 192.168.0.5, so that is the default gateway. It also shows the two external DNS servers as 163.128.80.93 and 163.128.78.93.
+
+Now do this first
+Close the Exhibits window with the X.
+Open Settings.
+Go to Network & internet.
+Click Advanced network settings.
+Click More network adapter options.
+Right-click Ethernet → Properties.
+Click Internet Protocol Version 4 (TCP/IPv4) → Properties.
+Select Use the following IP address and enter:
+IP address:       192.168.0.254
+Subnet mask:      255.255.255.0
+Default gateway:  192.168.0.5
+
+Then select Use the following DNS server addresses:
+
+Preferred DNS:    163.128.80.93
+Alternate DNS:    163.128.78.93
+
+Click OK.
+
+After that, configure Ethernet 2:
+
+IP address:       10.0.255.254
+Subnet mask:      255.255.0.0
+Default gateway:  [blank]
+
+Preferred DNS:    [blank]
+Alternate DNS:    [blank]
+
+Finally, open Command Prompt and run:
+
+ping 163.128.80.93
+
+You should get Reply from...
+
+Easy way to remember
+Ethernet = Company network + Internet
+IP      192.168.0.254
+Mask    255.255.255.0
+Gateway 192.168.0.5
+DNS1    163.128.80.93
+DNS2    163.128.78.93
+
+Ethernet 2 = Small internal network only
+IP      10.0.255.254
+Mask    255.255.0.0
+Gateway BLANK
+DNS     BLANK
