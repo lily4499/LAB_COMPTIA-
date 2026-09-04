@@ -1,3 +1,38 @@
+For **Lab 133.6.2.7 – Configure IP Addresses**, you can explain it in an interview like a small networking project.
+
+> One networking project I completed involved manually configuring IPv4 settings on a Windows workstation with two network adapters. The workstation needed to connect to the company’s main network and also to a separate internal network.
+>
+> I first reviewed the network diagram to identify the correct subnet, gateway, and DNS information. For the main Ethernet adapter, I assigned a static IP address of `192.168.0.254` with a `255.255.255.0` subnet mask. I configured the default gateway as `192.168.0.5` and added the preferred and alternate DNS servers provided in the network diagram.
+>
+> For the second network adapter, I configured `10.0.255.254` with a `255.255.0.0` subnet mask. Because that adapter was only for a local internal network, I left the gateway and DNS fields blank.
+>
+> After configuring both adapters, I verified the settings and tested connectivity by pinging the preferred DNS server. The ping returned successfully with no packet loss, which confirmed that the workstation could communicate through the network correctly.
+>
+> This project gave me hands-on practice with static IPv4 configuration, subnet masks, default gateways, DNS, multiple network adapters, and connectivity testing in Windows.
+
+A shorter interview version would be:
+
+> I completed a Windows networking lab where I configured static IPv4 settings on a workstation with two NICs. I used the network diagram to determine the correct IP addresses, subnet masks, gateway, and DNS settings. I configured the main adapter for company and Internet access, configured the second adapter for an internal network, and then verified connectivity using `ping`. The test completed successfully with 0% packet loss.
+
+A very simple way to remember the project is:
+
+**Situation:** A company workstation needed to connect to two different networks.
+
+**Task:** Manually configure both network adapters.
+
+**Action:** Set the IP address, subnet mask, gateway, and DNS where required.
+
+**Result:** Verified successful communication by pinging the DNS server.
+
+If the interviewer asks, **“What did you learn from that project?”**, you can say:
+
+> I learned how the IP address identifies the computer, the subnet mask defines the local network, the default gateway allows communication outside the local network, and DNS helps systems reach resources by name. I also learned how to verify a configuration instead of assuming it works.
+
+
+---
+
+---
+
 The **situation** in this lab was that you were acting as the **IT administrator for a small company**.
 
 A workstation in the **executive office** needed to connect to **two different networks**:
